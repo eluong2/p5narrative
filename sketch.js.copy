@@ -1,0 +1,67 @@
+const width = 500;
+const height = 500;
+
+let positionX;
+let positionY;
+let speedX;
+let speedY;
+let dw;
+
+
+
+function setup() {
+  createCanvas(width, height);
+  background(222);
+  positionX = 100;
+  positionY = 100;
+  speedX = 0;
+  speedY = 0;
+  dw = true;
+}
+
+function draw() {
+  noStroke();
+  if(dw)
+    ellipse(positionX, positionY, 55, 55);
+
+  positionX += speedX;
+  if(positionX > width - (55/2) + 1) {
+    positionX -= speedX;
+  }
+  if(positionX < 0 + (55/2) - 1){
+    positionX -= speedX;
+  }
+  positionY += speedY;
+  text("positionX" + positionX, 100, 100);
+
+}
+
+function keyPressed(){
+  if(keyCode === LEFT_ARROW){
+    speedX = -5;
+  }
+  if(keyCode === RIGHT_ARROW){
+    speedX = 5;
+  }
+  if(keyCode === UP_ARROW){
+    speedY = -5;
+  }
+  if(keyCode === DOWN_ARROW){
+    speedY = 5;
+  }
+  if(keyCode === 32){
+    background(222);
+  }
+  if(keyCode === 90)
+    dw = !dw;
+}
+
+function keyReleased(){
+  if(keyCode === LEFT_ARROW || keyCode === RIGHT_ARROW){
+    speedX = 0;
+  }
+  if(keyCode === UP_ARROW || keyCode === DOWN_ARROW){
+    speedY = 0;
+  }
+
+}
